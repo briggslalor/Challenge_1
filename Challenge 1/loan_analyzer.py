@@ -17,30 +17,32 @@ loan_costs = [500, 600, 200, 1000, 450]
 # How many loans are in the list?
 # @TODO: Use the `len` function to calculate the total number of loans in the list.
 # Print the number of loans from the list
-# YOUR CODE HERE!
 
 # total_num_of_loans gives the total number of loans in the list loan_costs
 total_num_of_loans = len(loan_costs)
 print(f"The total number of loans is: {total_num_of_loans}")
 
+
+
 # What is the total of all loans?
 # @TODO: Use the `sum` function to calculate the total of all loans in the list.
 # Print the total value of the loans
-# YOUR CODE HERE!
 
 # total_sum_of_loans gives the total sum of all the loans in the list loan_costs
 total_sum_of_loans = sum(loan_costs)
 print(f"The total sum of loans is: ${total_sum_of_loans}")
 
 
+
 # What is the average loan amount from the list?
 # @TODO: Using the sum of all loans and the total number of loans, calculate the average loan price.
 # Print the average loan amount
-# YOUR CODE HERE!
 
 # average_loan_price calculates the average price of a loan in the list loan_costs as (total_sum_of_loans / total_num_of_loans)
 average_loan_price = total_sum_of_loans / total_num_of_loans
 print(f"The average price of a loan is: ${average_loan_price}")
+
+
 
 """Part 2: Analyze Loan Data.
 
@@ -75,7 +77,15 @@ loan = {
 
 # @TODO: Use get() on the dictionary of additional information to extract the Future Value and Remaining Months on the loan.
 # Print each variable.
-# YOUR CODE HERE!
+
+# loan_future_value gives the Future Value of a specified loan
+loan_future_value = loan.get("future_value")
+print(f"The future value of the loan is: ${loan_future_value}")
+
+# loan_remaining_months gives the number of months remaining in the lifetime of a specified loan
+loan_remaining_months = loan.get("remaining_months")
+print(f"The number of months remianing on the loan is: {loan_remaining_months}")
+
 
 
 # @TODO: Use the formula for Present Value to calculate a "fair value" of the loan.
@@ -83,13 +93,25 @@ loan = {
 #   You'll want to use the **monthly** version of the present value formula.
 #   HINT: Present Value = Future Value / (1 + Discount_Rate/12) ** remaining_months
 
-# YOUR CODE HERE!
+# annual_discount_rate is a variable representing the discount rate as a minimum required return of 20% 
+annual_discount_rate = .2
+
+# loan_present_value calculates the present value of a specified loan given the future value and number of months remaining
+loan_present_value = loan_future_value / ((1 + annual_discount_rate / 12) ** loan_remaining_months)
+print(f"The present value of the loan is: ${loan_present_value: .2f}")
+
+
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
 # @TODO: Write a conditional statement (an if-else statement) to decide if the present value represents the loan's fair value.
 #    If the present value of the loan is greater than or equal to the cost, then print a message that says the loan is worth at least the cost to buy it.
 #    Else, the present value of the loan is less than the loan cost, then print a message that says that the loan is too expensive and not worth the price.
-# YOUR CODE HERE!
+
+# if-else statement to determine and display whether or not the loan is a worthy purchased base on its present value and price
+if loan_present_value >= loan.get("loan_price"):
+    print("The loan is worth at least the cost to purchase it.")
+else:
+    print("The loan is too expensive and is not worth the purchase.")
 
 
 """Part 3: Perform Financial Calculations.
